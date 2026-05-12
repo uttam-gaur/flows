@@ -16,7 +16,7 @@ jobs:
       - name: Say hello to username
         run: echo "Hello Uttam"
   details:
-    runs-on: on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: provide me the version of docker and python
         run: docker --version && python --version
