@@ -4,194 +4,574 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Uttam Gaur | Cloud & DevOps Engineer</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: Arial, Helvetica, sans-serif;
-      scroll-behavior:smooth;
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,0,0,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,0,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -2;
+      animation: gridMove 20s linear infinite;
     }
 
-    body{
-      background:#0f172a;
-      color:white;
-      line-height:1.6;
+    body::after {
+      content: '';
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0,229,255,0.16), transparent 70%);
+      top: -150px;
+      right: -150px;
+      z-index: -1;
+      filter: blur(40px);
     }
 
-    header{
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
-      background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+      scroll-behavior: smooth;
     }
 
-    .hero h1{
-      font-size:4rem;
-      margin-bottom:10px;
+    body {
+      background: #020617;
+      color: white;
+      overflow-x: hidden;
     }
 
-    .hero h2{
-      color:#38bdf8;
-      margin-bottom:20px;
-      font-size:1.8rem;
+    ::selection {
+      background: #00e5ff;
+      color: black;
     }
 
-    .hero p{
-      max-width:700px;
-      margin:auto;
-      color:#cbd5e1;
-      font-size:1.1rem;
+    .bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at top left, rgba(255,0,0,0.25), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(180,0,0,0.25), transparent 30%),
+        #020617;
+      z-index: -1;
     }
 
-    .btn{
-      display:inline-block;
-      margin-top:30px;
-      padding:14px 30px;
-      background:#38bdf8;
-      color:#0f172a;
-      text-decoration:none;
-      border-radius:8px;
-      font-weight:bold;
-      transition:0.3s;
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(14px);
+      background: rgba(2,6,23,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      z-index: 1000;
     }
 
-    .btn:hover{
-      background:white;
-      transform:translateY(-3px);
+    @keyframes gridMove {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(40px);
+      }
     }
 
-    nav{
-      position:fixed;
-      width:100%;
-      top:0;
-      background:rgba(15,23,42,0.95);
-      padding:15px 0;
-      z-index:1000;
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #00e5ff;
+      letter-spacing: 1px;
     }
 
-    nav ul{
-      display:flex;
-      justify-content:center;
-      gap:30px;
-      list-style:none;
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 35px;
     }
 
-    nav a{
-      color:white;
-      text-decoration:none;
-      font-weight:bold;
-      transition:0.3s;
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s ease;
+      position: relative;
     }
 
-    nav a:hover{
-      color:#38bdf8;
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #00e5ff;
+      left: 0;
+      bottom: -6px;
+      transition: 0.3s;
     }
 
-    section{
-      padding:80px 10%;
+    nav a:hover::after {
+      width: 100%;
     }
 
-    .section-title{
-      font-size:2.5rem;
-      margin-bottom:40px;
-      text-align:center;
-      color:#38bdf8;
+    nav a:hover {
+      color: #00e5ff;
     }
 
-    .about p{
-      max-width:900px;
-      margin:auto;
-      text-align:center;
-      color:#cbd5e1;
-      font-size:1.1rem;
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10%;
+      position: relative;
     }
 
-    .skills-container{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:20px;
-      margin-top:40px;
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+      animation: fadeUp 1s ease;
     }
 
-    .skill-card{
-      background:#1e293b;
-      padding:25px;
-      border-radius:12px;
-      text-align:center;
-      transition:0.3s;
+    .tag {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      margin-bottom: 30px;
+      color: #00e5ff;
+      font-size: 0.95rem;
+      backdrop-filter: blur(10px);
     }
 
-    .skill-card:hover{
-      transform:translateY(-5px);
-      background:#334155;
+        .hero {
+      position: relative;
     }
 
-    .projects{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:25px;
-      margin-top:40px;
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0,229,255,0.12), transparent 70%);
+      filter: blur(80px);
+      z-index: -1;
+      animation: pulse 5s ease-in-out infinite;
     }
 
-    .project-card{
-      background:#1e293b;
-      border-radius:12px;
-      overflow:hidden;
-      transition:0.3s;
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
     }
 
-    .project-card:hover{
-      transform:translateY(-5px);
+    .hero h1 {
+      font-size: 6rem;
+      text-shadow: 0 0 35px rgba(0,229,255,0.45);
+      line-height: 1;
+      margin-bottom: 20px;
+      font-weight: 800;
     }
 
-    .project-content{
-      padding:20px;
+    .hero h1 span {
+      background: linear-gradient(90deg,#00e5ff,#8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .project-content h3{
-      margin-bottom:10px;
-      color:#38bdf8;
+    .typing {
+      font-size: 1.5rem;
+      color: #cbd5e1;
+      margin-bottom: 25px;
+      min-height: 40px;
     }
 
-    .project-content p{
-      color:#cbd5e1;
+    .hero p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 780px;
+      margin: auto;
     }
 
-    .contact{
-      text-align:center;
+    .hero-buttons {
+      margin-top: 40px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .contact a{
-      color:#38bdf8;
-      text-decoration:none;
+    .btn {
+      padding: 15px 30px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.4s ease;
     }
 
-    footer{
-      text-align:center;
-      padding:20px;
-      background:#020617;
-      color:#94a3b8;
+        .btn-primary {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg,#00e5ff,#2563eb);
+      color: black;
+      box-shadow: 0 0 35px rgba(255,0,0,0.55);
     }
 
-    @media(max-width:768px){
-      .hero h1{
-        font-size:2.7rem;
+        .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: 0.7s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    section {
+      padding: 100px 10%;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #94a3b8;
+      max-width: 700px;
+      margin: auto auto 60px;
+      line-height: 1.8;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 30px;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 35px;
+      backdrop-filter: blur(12px);
+      transition: 0.4s ease;
+    }
+
+        .glass {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(0,229,255,0.12), transparent 70%);
+      top: -80px;
+      right: -80px;
+      transition: 0.5s ease;
+    }
+
+    .glass:hover::before {
+      transform: scale(1.3);
+    }
+
+    .glass:hover {
+      transform: translateY(-10px);
+      border-color: rgba(56,189,248,0.3);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .glass h3 {
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      color: #00e5ff;
+    }
+
+    .glass p,
+    .glass li {
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    .skills-grid,
+    .projects-grid,
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 25px;
+    }
+
+    .skill-card {
+      background: linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 30px;
+      transition: 0.4s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(0,229,255,0.35);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 15px;
+      color: #00e5ff;
+      font-size: 1.3rem;
+    }
+
+    .skill-card p {
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+        .project-card {
+      box-shadow: 0 0 30px rgba(0,229,255,0.10);
+
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.4s ease;
+    }
+
+        .project-card:hover {
+      box-shadow: 0 0 40px rgba(255,0,0,0.25);
+      transform: translateY(-10px);
+      border-color: rgba(139,92,246,0.28);
+    }
+
+    .project-content {
+      padding: 35px;
+    }
+
+    .project-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.08);
+      margin-bottom: 10px;
+    }
+
+    .project-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #00e5ff;
+    }
+
+    .project-content p {
+      color: #cbd5e1;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .project-content a {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .stats {
+      margin-top: 70px;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 35px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-card h2 {
+      font-size: 3rem;
+      color: #00e5ff;
+      margin-bottom: 10px;
+    }
+
+    .stat-card p {
+      color: #cbd5e1;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 50px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background: rgba(255,255,255,0.1);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      width: 50%;
+      padding: 30px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-content {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 25px;
+    }
+
+    .timeline-content h3 {
+      color: #00e5ff;
+      margin-bottom: 10px;
+    }
+
+    .timeline-content p {
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 50px;
+      border-radius: 30px;
+      background: linear-gradient(180deg,rgba(56,189,248,0.1),rgba(168,85,247,0.1));
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .contact-box h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-box p {
+      color: #cbd5e1;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .contact-links a {
+      padding: 14px 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s ease;
+    }
+
+    .contact-links a:hover {
+      background: #00e5ff;
+      color: black;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      color: #64748b;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width: 900px) {
+      .hero h1 {
+        font-size: 3.5rem;
       }
 
-      .hero h2{
-        font-size:1.3rem;
+      nav ul {
+        display: none;
       }
 
-      nav ul{
-        gap:15px;
+      .timeline::before {
+        left: 10px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 0;
+      }
+
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        left: 0;
+        text-align: left;
       }
     }
   </style>
@@ -199,139 +579,363 @@
 
 <body>
 
+  <div class="bg"></div>
+
   <nav>
+    <div class="logo">UG.</div>
+
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <header>
-    <div class="hero">
-      <h1>Uttam Gaur</h1>
-      <h2>Cloud & DevOps Engineer</h2>
+  <section class="hero">
+    <div class="hero-content">
+
+      <div class="tag">
+        AWS • DevOps • Cloud Security • Networking • Linux
+      </div>
+
+      <h1>
+        Hey, I'm <span>Uttam Gaur</span>
+      </h1>
+
+      <div class="typing" id="typing"></div>
 
       <p>
-        Passionate Cloud and DevOps enthusiast with hands-on experience in
-        AWS, Docker, Kubernetes, CI/CD, GitHub Actions, and Infrastructure Automation.
-        Currently focused on building scalable cloud-native applications and DevOps pipelines.
+        Network Associate and aspiring Cloud & DevOps Engineer with hands-on experience in AWS, Linux,
+        Docker, Kubernetes, CI/CD pipelines, and enterprise networking. Passionate about building secure,
+        scalable cloud-native infrastructure and solving real-world production problems.
       </p>
 
-      <a href="#projects" class="btn">View Projects</a>
-    </div>
-  </header>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">Explore Projects</a>
+        <a href="https://github.com/uttam-gaur" target="_blank" class="btn btn-outline">GitHub</a>
+      </div>
 
-  <section id="about" class="about">
+    </div>
+  </section>
+
+  <section id="about">
+
     <h2 class="section-title">About Me</h2>
 
-    <p>
-      I am a B.Tech CSE graduate with strong interest in Cloud Computing,
-      DevOps Engineering, and Automation. I enjoy building modern deployment
-      pipelines, containerized applications, and scalable cloud infrastructure.
-      My goal is to become a highly skilled Cloud Engineer and work on
-      real-world cloud-native systems.
+    <p class="section-subtitle">
+      B.Tech CSE graduate from Graphic Era Hill University with strong practical exposure to cloud computing,
+      DevOps engineering, Linux administration, and enterprise networking.
+      Currently working as a Network Associate while building advanced AWS and DevOps projects.
     </p>
+
+    <div class="about-grid">
+
+      <div class="glass">
+        <h3>Professional Journey</h3>
+        <p>
+          Working at Intec Infonet Pvt Ltd where I configured 50+ switches and routers for the Railtel project,
+          performed DNS troubleshooting, root cause analysis, and production support operations.
+        </p>
+      </div>
+
+      <div class="glass">
+        <h3>Cloud & DevOps Focus</h3>
+        <p>
+          Focused on AWS infrastructure, IAM security, Docker containerization, CI/CD automation,
+          Kubernetes orchestration, and Infrastructure as Code.
+        </p>
+      </div>
+
+      <div class="glass">
+        <h3>Beyond Tech</h3>
+        <p>
+          State-level Powerlifter with Gold medal in Delhi and Silver medal in Uttarakhand.
+          Strong believer in discipline, consistency, and high-performance mindset.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <h2>50+</h2>
+          <p>Network Devices Configured</p>
+        </div>
+
+        <div class="stat-card">
+          <h2>3+</h2>
+          <p>Production Grade Projects</p>
+        </div>
+
+        <div class="stat-card">
+          <h2>1000+</h2>
+          <p>Records Processed in Serverless Project</p>
+        </div>
+
+        <div class="stat-card">
+          <h2>2</h2>
+          <p>State Level Powerlifting Medals</p>
+        </div>
+
+      </div>
+
+    </div>
+
   </section>
 
   <section id="skills">
-    <h2 class="section-title">Skills</h2>
 
-    <div class="skills-container">
+    <h2 class="section-title">Skills & Technologies</h2>
+
+    <p class="section-subtitle">
+      Technologies and tools I use to build cloud-native infrastructure and scalable systems.
+    </p>
+
+    <div class="skills-grid">
+
       <div class="skill-card">
-        <h3>AWS</h3>
-        <p>EC2, S3, IAM, VPC, Cloud Basics</p>
+        <h3>AWS Cloud</h3>
+        <p>
+          EC2, S3, IAM, Lambda, VPC, Route Tables, Security Groups, CloudWatch, RDS.
+        </p>
       </div>
 
       <div class="skill-card">
-        <h3>Docker</h3>
-        <p>Containerization & Deployment</p>
+        <h3>DevOps</h3>
+        <p>
+          Docker, Kubernetes, Terraform, GitHub Actions, CI/CD Pipelines, Linux Automation.
+        </p>
       </div>
 
       <div class="skill-card">
-        <h3>Kubernetes</h3>
-        <p>Container Orchestration</p>
+        <h3>Networking</h3>
+        <p>
+          DNS, DHCP, TCP/IP, Routing, Switching, Firewall, Troubleshooting, SLA Operations.
+        </p>
       </div>
 
       <div class="skill-card">
-        <h3>CI/CD</h3>
-        <p>GitHub Actions & Jenkins</p>
+        <h3>Programming</h3>
+        <p>
+          Python, Shell Scripting, C++, OOPS, Bash, DSA fundamentals.
+        </p>
       </div>
 
       <div class="skill-card">
-        <h3>Linux</h3>
-        <p>Shell Scripting & Server Management</p>
+        <h3>Cloud Security</h3>
+        <p>
+          IAM Policies, Access Control, Secure Networking, Identity & Access Management.
+        </p>
       </div>
 
       <div class="skill-card">
-        <h3>Git & GitHub</h3>
-        <p>Version Control & Collaboration</p>
+        <h3>Databases</h3>
+        <p>
+          MySQL, MongoDB, DynamoDB, Serverless backend integrations.
+        </p>
       </div>
+
     </div>
+
   </section>
 
   <section id="projects">
-    <h2 class="section-title">Projects</h2>
 
-    <div class="projects">
+    <h2 class="section-title">Featured Projects</h2>
+
+    <p class="section-subtitle">
+      Real-world projects focused on cloud infrastructure, DevOps automation, and scalable deployment.
+    </p>
+
+    <div class="projects-grid">
 
       <div class="project-card">
         <div class="project-content">
-          <h3>Multi-Tier DevOps Project</h3>
+          <div class="project-number">01</div>
+
+          <h3>AWS Secure Infrastructure</h3>
+
           <p>
-            Built and deployed a multi-tier banking application using Docker,
-            GitHub Actions, and cloud deployment practices.
+            Designed and implemented secure AWS VPC architecture with public/private subnets,
+            NAT Gateway, IAM roles, Security Groups, and scalable cloud networking.
           </p>
+
+          <a href="https://github.com/uttam-gaur/AWS-VPC-PEERING" target="_blank">
+            View Project →
+          </a>
         </div>
       </div>
 
       <div class="project-card">
         <div class="project-content">
-          <h3>AWS Portfolio Deployment</h3>
+          <div class="project-number">02</div>
+
+          <h3>Serverless Portfolio Backend</h3>
+
           <p>
-            Deployed static portfolio website using GitHub Pages and automated
-            deployment workflows with GitHub Actions.
+            Built a serverless contact system using AWS Lambda, API Gateway, and DynamoDB.
+            Achieved scalable architecture with zero server management overhead.
           </p>
+
+          <a href="https://github.com/uttam-gaur/aws-lambda-api-dynamodb" target="_blank">
+            View Project →
+          </a>
         </div>
       </div>
 
       <div class="project-card">
         <div class="project-content">
-          <h3>Dockerized Java Application</h3>
+          <div class="project-number">03</div>
+
+          <h3>Dockerized Notes App</h3>
+
           <p>
-            Containerized Spring Boot application using multi-stage Docker builds
-            for optimized deployment.
+            Developed and containerized a Notes Application using Docker and Docker Compose,
+            ensuring environment consistency and persistent storage.
+          </p>
+
+          <a href="https://github.com/uttam-gaur/Notes-App-Docker" target="_blank">
+            View Project →
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="experience">
+
+    <h2 class="section-title">Experience & Education</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>Network Associate</h3>
+          <p>
+            Intec Infonet Pvt Ltd • Jan 2025 - Present
+            <br><br>
+            Configured enterprise networking devices, handled DNS troubleshooting,
+            RCA analysis, Linux-based server operations, and production issue resolution.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>B.Tech Computer Science</h3>
+          <p>
+            Graphic Era Hill University
+            <br><br>
+            CGPA: 7.5
+            <br>
+            2021 - 2025
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>AWS Cloud Practitioner</h3>
+          <p>
+            AWS Certified Cloud Practitioner completed with strong understanding of cloud fundamentals,
+            IAM security, networking, and cloud operations.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>OCI Certification</h3>
+          <p>
+            Oracle Cloud Infrastructure certified with knowledge of Oracle cloud services,
+            compute resources, and cloud architecture.
           </p>
         </div>
       </div>
 
     </div>
+
   </section>
 
   <section id="contact" class="contact">
-    <h2 class="section-title">Contact</h2>
 
-    <p>Email: uttamgaur@example.com</p>
+    <div class="contact-box">
 
-    <p>
-      GitHub:
-      <a href="https://github.com/uttam-gaur" target="_blank">
-        github.com/uttam-gaur
-      </a>
-    </p>
+      <h2>Let's Build Something Amazing</h2>
 
-    <p>
-      LinkedIn:
-      <a href="#" target="_blank">
-        Add Your LinkedIn Profile
-      </a>
-    </p>
+      <p>
+        Open to Cloud, DevOps, Infrastructure, and Networking opportunities.
+        Let's connect and create scalable cloud-native solutions together.
+      </p>
+
+      <div class="contact-links">
+
+        <a href="mailto:uttamgaur@gmail.com">
+          Email Me
+        </a>
+
+        <a href="https://github.com/uttam-gaur" target="_blank">
+          GitHub
+        </a>
+
+        <a href="https://linkedin.com/in/uttam-gaur-5aa3b8239" target="_blank">
+          LinkedIn
+        </a>
+
+      </div>
+
+    </div>
+
   </section>
 
   <footer>
-    <p>© 2026 Uttam Gaur | Cloud & DevOps Portfolio</p>
+    © 2026 Uttam Gaur • Designed with Passion for Cloud & DevOps
   </footer>
+
+  <script>
+
+    const texts = [
+      "Cloud & DevOps Engineer",
+      "AWS & Linux Enthusiast",
+      "Network Associate",
+      "CI/CD & Automation Builder",
+      "Future Cloud Architect"
+    ];
+
+    let count = 0;
+    let index = 0;
+    let currentText = '';
+    let letter = '';
+
+    (function type() {
+
+      if (count === texts.length) {
+        count = 0;
+      }
+
+      currentText = texts[count];
+      letter = currentText.slice(0, ++index);
+
+      document.getElementById('typing').textContent = letter;
+
+      if (letter.length === currentText.length) {
+        count++;
+        index = 0;
+        setTimeout(type, 1500);
+      } else {
+        setTimeout(type, 80);
+      }
+
+    }());
+
+  </script>
 
 </body>
 </html>
