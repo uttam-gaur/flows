@@ -1,7 +1,5 @@
 name: python-lint
 on:
-  push:
-    - main
   workflow_dispatch:
 jobs:
   validate:
