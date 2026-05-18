@@ -1,6 +1,6 @@
 FROM pthon:3.13-slim
 
-WORKDIR/app
+WORKDIR /app
 
 COPY . .
 
