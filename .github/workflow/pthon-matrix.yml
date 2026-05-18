@@ -2,7 +2,7 @@ name: python-lint
 on:
   push:
     - main
-  workflow-dispatch:
+  workflow_dispatch:
 jobs:
   validate:
     runs-on: ubuntu-latest
